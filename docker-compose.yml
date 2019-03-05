@@ -16,7 +16,7 @@ services:
       - traefik
 
   api:
-    image: alanmunozlopez/api:api
+    image: alanmunozlopez/api:latest
     container_name: acid-api
     restart: always
     links:
