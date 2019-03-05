@@ -25,7 +25,7 @@ services:
       - redis
     labels:
       - "traefik.backend=restapi"
-      - "traefik.frontend.rule=Host:api.alanmunoz.pro
+      - "traefik.frontend.rule=Host:api.alanmunoz.pro"
       - "traefik.enable=true"
       - "traefik.port=5000"
     networks:
