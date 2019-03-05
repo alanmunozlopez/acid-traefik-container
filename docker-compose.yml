@@ -1,7 +1,19 @@
 version: '3'
 services:
+  traefik:
+    image: traefik:alpine
+    container_name: traefik-container
+    ports:
+      - 80:80
+      - 8080:8080
+    volumes:
+      - ./traefik.toml:/traefik.toml
+      - /var/run/docker.sock:/var/run/docker.sock
+    network:
+      - traefik
+
   api:
-    image: api
+    image: alanmunozlopez/api
     container_name: acid-api
     restart: always
     ports:
@@ -10,6 +22,8 @@ services:
       - redis
     depends_on:
       - redis
+    network:
+      - traefik
   
   redis:
     image: redis:latest
@@ -17,3 +31,7 @@ services:
     expose:
       - 6379
     restart: always
+
+networks:
+  traefik:
+    external: true
