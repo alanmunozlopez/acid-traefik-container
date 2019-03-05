@@ -13,7 +13,7 @@ services:
       - traefik
 
   api:
-    image: alanmunozlopez/api
+    image: alanmunozlopez/api:api
     container_name: acid-api
     restart: always
     ports:
