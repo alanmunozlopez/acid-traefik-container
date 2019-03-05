@@ -14,34 +14,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - traefik
-
-  api:
-    image: alanmunozlopez/api:api
-    container_name: acid-api
-    restart: always
-    links:
-      - redis
-    depends_on:
-      - redis
-    labels:
-      - "traefik.backend=restapi"
-      - "traefik.frontend.rule=Host:api.alanmunoz.pro"
-      - "traefik.enable=true"
-      - "traefik.port=5000"
-    networks:
-      - traefik
-  
-  redis:
-    image: redis:latest
-    container_name: cache-db
-    expose:
-      - 6379
-    restart: always
-    labels:
-      - "traefik.enable=false"
-    networks:
-      - traefik
-
+      
 networks:
   traefik:
     external: true
