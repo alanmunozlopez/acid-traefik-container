@@ -16,12 +16,15 @@ services:
     image: alanmunozlopez/api:api
     container_name: acid-api
     restart: always
-    ports:
-      - 5000:5000
     links:
       - redis
     depends_on:
       - redis
+    labels:
+      - "traefik.backend=restapi"
+      - "traefik.frontend.rule=Host:ec2-54-191-43-249.us-west-2.compute.amazonaws.com"
+      - "traefik.enable=true"
+      - "traefik.port=5000"
     networks:
       - traefik
   
@@ -31,6 +34,10 @@ services:
     expose:
       - 6379
     restart: always
+    labels:
+      - "traefik.enable=false"
+    networks:
+        -traefik
 
 networks:
   traefik:
