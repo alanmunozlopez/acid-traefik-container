@@ -9,7 +9,7 @@ services:
     volumes:
       - ./traefik.toml:/traefik.toml
       - /var/run/docker.sock:/var/run/docker.sock
-    network:
+    networks:
       - traefik
 
   api:
@@ -22,7 +22,7 @@ services:
       - redis
     depends_on:
       - redis
-    network:
+    networks:
       - traefik
   
   redis:
