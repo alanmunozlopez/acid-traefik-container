@@ -41,6 +41,18 @@ services:
       - "traefik.enable=false"
     networks:
       - traefik
+  
+  client:
+    image: alanmunozlopez/web-app:latest
+    container_name: forecast-app
+    restart: always
+    labels:
+      - "traefik.backend=client"
+      - "traefik.frontend.rule=Host:alanmunoz.pro"
+      - "traefik.enable=true"
+      - "traefik.port=3000"
+    networks:
+      - traefik
 
 networks:
   traefik:
